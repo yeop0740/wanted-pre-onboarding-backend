@@ -27,4 +27,9 @@ public class RecruitmentController {
         return new UpdateRecruitmentResponse(id);
     }
 
+    @DeleteMapping("/{recruitmentId}")
+    public void deleteRecruitment(@PathVariable Long recruitmentId) {
+        recruitmentService.deleteRecruitment(recruitmentId);
+    }
+
 }

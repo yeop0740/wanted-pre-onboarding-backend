@@ -33,4 +33,9 @@ public class RecruitmentService {
         return recruitment.getId();
     }
 
+    public void deleteRecruitment(Long recruitmentId) {
+        Recruitment recruitment = recruitmentRepository.findById(recruitmentId).orElseThrow(() -> new BusinessExceeption("존재하지 않는 엔티티"));
+        recruitmentRepository.delete(recruitment);
+    }
+
 }
