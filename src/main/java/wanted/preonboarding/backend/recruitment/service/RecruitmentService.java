@@ -8,8 +8,12 @@ import wanted.preonboarding.backend.company.Company;
 import wanted.preonboarding.backend.company.repository.CompanyRepository;
 import wanted.preonboarding.backend.recruitment.CreateRecruitmentRequest;
 import wanted.preonboarding.backend.recruitment.Recruitment;
+import wanted.preonboarding.backend.recruitment.RecruitmentDto;
 import wanted.preonboarding.backend.recruitment.UpdateRecruitmentRequest;
 import wanted.preonboarding.backend.recruitment.repository.RecruitmentRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +40,13 @@ public class RecruitmentService {
     public void deleteRecruitment(Long recruitmentId) {
         Recruitment recruitment = recruitmentRepository.findById(recruitmentId).orElseThrow(() -> new BusinessExceeption("존재하지 않는 엔티티"));
         recruitmentRepository.delete(recruitment);
+    }
+
+    public List<RecruitmentDto> findRecruitment() {
+        List<Recruitment> recruitments = recruitmentRepository.findAll();
+        return recruitments.stream()
+                .map(RecruitmentDto::from)
+                .collect(Collectors.toList());
     }
 
 }

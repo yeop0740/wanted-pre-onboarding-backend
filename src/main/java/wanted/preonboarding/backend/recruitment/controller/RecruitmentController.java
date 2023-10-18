@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import wanted.preonboarding.backend.recruitment.CreateRecruitmentRequest;
+import wanted.preonboarding.backend.recruitment.RecruitmentDto;
 import wanted.preonboarding.backend.recruitment.UpdateRecruitmentRequest;
 import wanted.preonboarding.backend.recruitment.UpdateRecruitmentResponse;
 import wanted.preonboarding.backend.recruitment.service.RecruitmentService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +33,11 @@ public class RecruitmentController {
     @DeleteMapping("/{recruitmentId}")
     public void deleteRecruitment(@PathVariable Long recruitmentId) {
         recruitmentService.deleteRecruitment(recruitmentId);
+    }
+
+    @GetMapping
+    public  List<RecruitmentDto> findRecruitment() {
+        return recruitmentService.findRecruitment();
     }
 
 }
