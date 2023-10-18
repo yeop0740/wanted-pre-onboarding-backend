@@ -17,8 +17,6 @@ public class Application extends BaseEntity {
     @Column(name = "application_id")
     private Long id;
 
-    private String resume;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User applicant;
@@ -27,9 +25,8 @@ public class Application extends BaseEntity {
     @JoinColumn(name = "recruitment_id")
     private Recruitment recruitment;
 
-    public Application(User applicant, String resume, Recruitment recruitment) {
+    public Application(User applicant, Recruitment recruitment) {
         this.applicant = applicant;
-        this.resume = resume;
         this.recruitment = recruitment;
     }
 

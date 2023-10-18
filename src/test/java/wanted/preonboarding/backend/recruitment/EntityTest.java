@@ -168,7 +168,7 @@ class EntityTest {
         em.persist(recruitment2);
 
         String resume = "열정 가득 백엔드 개발자 입니다.";
-        Application application = new Application(user, resume, recruitment1);
+        Application application = new Application(user, recruitment1);
         em.persist(application);
 
         Long expectedId = application.getId();
@@ -219,10 +219,10 @@ class EntityTest {
         em.persist(recruitment2);
 
         String resume = "열정 가득 백엔드 개발자 입니다.";
-        Application application1 = new Application(user, resume, recruitment1);
+        Application application1 = new Application(user, recruitment1);
         em.persist(application1);
 
-        Application application2 = new Application(user, resume, recruitment2);
+        Application application2 = new Application(user, recruitment2);
         em.persist(application2);
         List<Application> expectedApplicants = List.of(application1, application2);
 
