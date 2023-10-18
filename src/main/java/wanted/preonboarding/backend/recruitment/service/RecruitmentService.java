@@ -8,6 +8,7 @@ import wanted.preonboarding.backend.company.Company;
 import wanted.preonboarding.backend.company.repository.CompanyRepository;
 import wanted.preonboarding.backend.recruitment.CreateRecruitmentRequest;
 import wanted.preonboarding.backend.recruitment.Recruitment;
+import wanted.preonboarding.backend.recruitment.UpdateRecruitmentRequest;
 import wanted.preonboarding.backend.recruitment.repository.RecruitmentRepository;
 
 @Service
@@ -24,6 +25,12 @@ public class RecruitmentService {
         Recruitment recruitment = new Recruitment(request.getPosition(), request.getReward(), request.getDescription(), request.getSkill(), company);
 
         recruitmentRepository.save(recruitment);
+    }
+
+    public Long updateRecruitment(Long recruitmentId, UpdateRecruitmentRequest request) {
+        Recruitment recruitment = recruitmentRepository.findById(recruitmentId).orElseThrow(() -> new BusinessExceeption("존재하지 않는 엔티티"));
+        recruitment.update(request);
+        return recruitment.getId();
     }
 
 }
