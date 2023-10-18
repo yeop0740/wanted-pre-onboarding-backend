@@ -3,10 +3,7 @@ package wanted.preonboarding.backend.recruitment.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import wanted.preonboarding.backend.recruitment.CreateRecruitmentRequest;
-import wanted.preonboarding.backend.recruitment.RecruitmentDto;
-import wanted.preonboarding.backend.recruitment.UpdateRecruitmentRequest;
-import wanted.preonboarding.backend.recruitment.UpdateRecruitmentResponse;
+import wanted.preonboarding.backend.recruitment.*;
 import wanted.preonboarding.backend.recruitment.service.RecruitmentService;
 
 import java.util.List;
@@ -38,6 +35,11 @@ public class RecruitmentController {
     @GetMapping
     public  List<RecruitmentDto> findRecruitment() {
         return recruitmentService.findRecruitment();
+    }
+
+    @GetMapping("/details/{recruitmentId}")
+    public RecruitmentDetailsDto findRecruitmentDetails(@PathVariable Long recruitmentId) {
+        return recruitmentService.findRecruitmentDetails(recruitmentId);
     }
 
 }

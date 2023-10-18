@@ -6,10 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import wanted.preonboarding.backend.common.exception.BusinessExceeption;
 import wanted.preonboarding.backend.company.Company;
 import wanted.preonboarding.backend.company.repository.CompanyRepository;
-import wanted.preonboarding.backend.recruitment.CreateRecruitmentRequest;
-import wanted.preonboarding.backend.recruitment.Recruitment;
-import wanted.preonboarding.backend.recruitment.RecruitmentDto;
-import wanted.preonboarding.backend.recruitment.UpdateRecruitmentRequest;
+import wanted.preonboarding.backend.recruitment.*;
 import wanted.preonboarding.backend.recruitment.repository.RecruitmentRepository;
 
 import java.util.List;
@@ -47,6 +44,11 @@ public class RecruitmentService {
         return recruitments.stream()
                 .map(RecruitmentDto::from)
                 .collect(Collectors.toList());
+    }
+
+    public RecruitmentDetailsDto findRecruitmentDetails(Long recruitmentId) {
+        Recruitment recruitment = recruitmentRepository.findById(recruitmentId).orElseThrow(() -> new BusinessExceeption("존재하지 않는 엔티티"));
+        return RecruitmentDetailsDto.from(recruitment);
     }
 
 }
