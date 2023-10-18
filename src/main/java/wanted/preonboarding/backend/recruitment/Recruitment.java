@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import wanted.preonboarding.backend.application.Application;
 import wanted.preonboarding.backend.common.BaseEntity;
 import wanted.preonboarding.backend.company.Company;
-import wanted.preonboarding.backend.user.User;
 
 import javax.persistence.*;
 
@@ -39,6 +38,13 @@ public class Recruitment extends BaseEntity {
         this.description = description;
         this.skill = skill;
         this.company = company;
+    }
+
+    public void update(UpdateRecruitmentRequest request) {
+        this.position = request.getPosition();
+        this.reward = request.getReward();
+        this.description = request.getDescription();
+        this.skill = request.getSkill();
     }
 
 }
