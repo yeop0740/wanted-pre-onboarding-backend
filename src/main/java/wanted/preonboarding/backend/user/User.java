@@ -32,8 +32,8 @@ public class User extends BaseEntity {
         this.isActivated = true;
     }
 
-    public Application apply(String resume, Recruitment recruitment) {
-        Application application = new Application(this, resume, recruitment);
+    public Application apply(Recruitment recruitment) {
+        Application application = new Application(this, recruitment);
         this.applications.add(application);
         return application;
     }
